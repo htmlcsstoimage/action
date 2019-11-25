@@ -1,10 +1,26 @@
-name: 'Your name here'
-description: 'Provide a description here'
-author: 'Your name or organization here'
+name: 'HTML/CSS to Image'
+description: 'Convert HTML/CSS into PNG, JPG or WebP. Renders exactly like Google Chrome.'
+author: 'HTMLCSSToImage'
 inputs:
-  myInput:              # change this
-    description: 'input description here'
-    default: 'default value if applicable'
+  hcti_user_id:
+    description: 'Your HCTI API ID'
+    required: true
+  hcti_api_key:
+    description: 'Your HCTI API Key. Set this using a Secret'
+    required: true
+  html:              # change this
+    description: 'The HTML for your image'
+    required: true
+  css:
+    description: 'The CSS for your image'
+    required: false
+    default: ''
+  google_fonts:
+    description: 'The Google fonts to be loaded for your image'
+    required: false
+outputs:
+  image_url:
+    description: 'The URL to your image'
 runs:
   using: 'node12'
   main: 'lib/main.js'
