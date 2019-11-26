@@ -23,7 +23,8 @@
     "@actions/core": "^1.1.0",
     "fetch": "^1.1.0",
     "fetch-vcr": "^3.1.0",
-    "js-base64": "^2.5.1"
+    "js-base64": "^2.5.1",
+    "node-fetch": "^2.6.0"
   },
   "devDependencies": {
     "@types/jest": "^24.0.13",
