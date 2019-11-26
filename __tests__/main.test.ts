@@ -16,5 +16,5 @@ test('test runs', () => {
     env: process.env
   };
 
-  const output = cp.execSync(`VCR_MODE=cache node ${ip}`, options).toString();
+  const output = cp.execSync(`VCR_MODE=playback node ${ip}`, options).toString();
 });
