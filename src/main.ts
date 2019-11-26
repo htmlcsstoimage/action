@@ -36,7 +36,7 @@ async function run() {
     if (response.ok) {
       const response_data = await response.json()
 
-      core.info(response_data.url)
+      console.log(response_data.url)
       core.setOutput('image_url', response_data.url);
     } else {
       new Error(response.statusText)
