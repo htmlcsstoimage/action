@@ -1,18 +1,15 @@
 import * as core from '@actions/core';
-import fetch from 'fetch-vcr';
+import fetchvcr from 'fetch-vcr';
 import {Base64} from 'js-base64';
 import {wait} from './wait'
 
-fetch.configure({
-  mode: 'playback',
-	fixturePath: './fixtures'
-})
+let fetch = require('fetch');
 
 if (process.env.VCR_MODE) {
+  fetch = fetchvcr
   fetch.configure({
     mode: 'playback',
-    fixturePath: './fixtures',
-    ignoreUrls: ['https://hcti.io/v1/image']
+    fixturePath: './fixtures'
   })
 }
 
