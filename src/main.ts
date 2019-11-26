@@ -5,8 +5,16 @@ import {wait} from './wait'
 
 fetch.configure({
   mode: 'playback',
-	fixturePath: './fixtures',
+	fixturePath: './fixtures'
 })
+
+if (process.env.VCR_MODE) {
+  fetch.configure({
+    mode: 'playback',
+    fixturePath: './fixtures',
+    ignoreUrls: ['https://hcti.io/v1/image']
+  })
+}
 
 async function run() {
   try {
