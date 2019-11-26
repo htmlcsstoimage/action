@@ -1,5 +1,11 @@
 import * as core from '@actions/core';
+import fetch from 'fetch-vcr';
+import {Base64} from 'js-base64';
 import {wait} from './wait'
+
+fetch.configure({
+	fixturePath: './fixtures',
+})
 
 async function run() {
   try {
@@ -13,10 +19,17 @@ async function run() {
     core.setSecret(hcti_user_id);
     core.setSecret(hcti_api_key);
 
-    console.log(`${html} ${css} ${google_fonts}`)
+    const data = { html: html, css: css, google_fonts: google_fonts }
 
-    core.setOutput('image_url', 'hi mike');
+		let headers = {};
+		headers['Authorization'] = 'Basic ' + Base64.encode(hcti_user_id + ":" + hcti_api_key);
+
+    const response = await fetch('https://hcti.io/v1/image', { method: 'post', headers: headers, body: JSON.stringify(data)});
+    const response_data = await response.json()
+
+    core.setOutput('image_url', response_data.url);
   } catch (error) {
+    console.error(error);
     core.setFailed(error.message);
   }
 }
