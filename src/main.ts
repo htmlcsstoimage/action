@@ -5,6 +5,7 @@ import {wait} from './wait'
 
 let fetch = require('node-fetch');
 
+// Do not make a real HTTP in tests
 if (process.env.VCR_MODE) {
   fetch = fetchvcr
   fetch.configure({
@@ -31,9 +32,15 @@ async function run() {
 		headers['Authorization'] = 'Basic ' + Base64.encode(hcti_user_id + ":" + hcti_api_key);
 
     const response = await fetch('https://hcti.io/v1/image', { method: 'post', headers: headers, body: JSON.stringify(data)});
-    const response_data = await response.json()
 
-    core.setOutput('image_url', response_data.url);
+    if (response.ok) {
+      const response_data = await response.json()
+
+      core.info(response_data.url)
+      core.setOutput('image_url', response_data.url);
+    } else {
+      new Error(response.statusText)
+    }
   } catch (error) {
     console.error(error);
     core.setFailed(error.message);
