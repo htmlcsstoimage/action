@@ -32,14 +32,14 @@ async function run() {
 		headers['Authorization'] = 'Basic ' + Base64.encode(hcti_user_id + ":" + hcti_api_key);
 
     const response = await fetch('https://hcti.io/v1/image', { method: 'post', headers: headers, body: JSON.stringify(data)});
+    const response_data = await response.json()
 
     if (response.ok) {
-      const response_data = await response.json()
-
-      console.log(response_data.url)
+      console.log(response_data)
       core.setOutput('image_url', response_data.url);
     } else {
-      new Error(response.statusText)
+      console.log(response_data)
+      new Error(response_data)
     }
   } catch (error) {
     console.error(error);
