@@ -39,7 +39,7 @@ async function run() {
       core.setOutput('image_url', response_data.url);
     } else {
       console.log(response_data)
-      throw new Error(response_data)
+      throw new Error(response_data.message)
     }
   } catch (error) {
     console.error(error);
