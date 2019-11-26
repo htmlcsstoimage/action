@@ -1,4 +1,4 @@
-name: "Test typescript-action"
+name: "Test Action"
 on:
   pull_request:
   push:
