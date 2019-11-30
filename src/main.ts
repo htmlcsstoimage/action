@@ -36,7 +36,7 @@ async function run() {
 
     if (response.ok) {
       console.log(response_data)
-      core.setOutput('image_url', response_data.url);
+      core.setOutput('url', response_data.url);
     } else {
       console.log(response_data)
       throw new Error(response_data.message)
