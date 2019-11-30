@@ -1,6 +1,9 @@
 name: 'HTML/CSS to Image'
 description: 'Convert HTML/CSS into PNG, JPG or WebP. Renders exactly like Google Chrome.'
 author: 'HTMLCSSToImage'
+branding:
+  icon: image
+  color: green
 inputs:
   hcti_user_id:
     description: 'Your HCTI API ID'
