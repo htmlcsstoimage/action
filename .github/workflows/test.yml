@@ -16,14 +16,15 @@ jobs:
     - run: npm run build
     - run: npm test
     - name: Create image
-      id: create_image  
+      id: create_image
       uses: ./
       with:
         hcti_user_id: ${{ secrets.HCTI_USER_ID }}
         hcti_api_key: ${{ secrets.HCTI_API_KEY }}
         html: '<div class="box">Hello, world</div>'
-        css: '.box { width: 400px }'   
-    - name: Print url  
+        css: '.box { width: 400px }'
+    - name: Print url
       uses: mscoutermarsh/cowsays-action@master
       with:
         text: ${{ steps.create_image.outputs.url }}
+        color: "green"
