@@ -13,6 +13,7 @@ Sign up for an API key at https://htmlcsstoimage.com. Then set the following sec
 
 ```yml
 - name Create image
+  id: create_image
   uses: htmlcsstoimage/action@v1
   with:
     hcti_user_id: ${{ secrets.HCTI_USER_ID }}
@@ -37,6 +38,7 @@ jobs:
     steps:
     - name Create image
       uses: htmlcsstoimage/action@v1
+      id: create_image
       with:
        hcti_user_id: ${{ secrets.HCTI_USER_ID }}
        hcti_api_key: ${{ secrets.HCTI_API_KEY }}
@@ -66,4 +68,4 @@ The API will return a URL with your created image.
 }
 ```
 
-You can then access it via the `outputs` in your next steps to pass it to another Action. `${{ steps.create_image.outputs.url }}`
+You can then access it via the `outputs` in your next steps to pass it to another Action. `${{ steps.create_image.outputs.url }}`. The `create_image` comes from the `id` set in your step using this Action.
