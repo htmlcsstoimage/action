@@ -1,38 +1,57 @@
-# Create a JavaScript Action using TypeScript
+# HTML/CSS to Image Action
 
-Use this template to bootstrap the creation of a JavaScript action.:rocket:
+Convert HTML/CSS to an image (png, jpg or webp) using GitHub Actions.
 
-This template includes compilication support, tests, a validation workflow, publishing, and versioning guidance.  
+## Set your secrets
 
-If you are new, there's also a simpler introduction.  See the [Hello World JavaScript Action](https://github.com/actions/hello-world-javascript-action)
+Sign up for an API key at https://htmlcsstoimage.com. Then set the following secrets in your repository. The values for each are available on your [dashboard](https://htmlcsstoimage.com/dashboard).
 
-## Create an action from this template
+- `HCTI_USER_ID`
+- `HCTI_API_KEY`
 
-Click the `Use this Template` and provide the new repo details for your action
-
-## Code in Master
+## Add to your workflow
 
 Install the dependencies  
-```bash
-$ npm install
+```yml
+on:
+  push
+
+name: Generate image
+
+jobs:
+  image:
+    name: Cowsays
+    runs-on: ubuntu-latest
+    steps:
+    - name Create image
+      uses: htmlcsstoimage/action@v1
+      with:
+       hcti_user_id: ${{ secrets.HCTI_USER_ID }}
+       hcti_api_key: ${{ secrets.HCTI_API_KEY }}
+       html: "<div id='box'>Hello, world</div>"
+       css: ".box { width: 200px; height: 200px; font-family: 'Roboto' }"
+       google_fonts: "Roboto"
+    - name: Print url
+      uses: mscoutermarsh/cowsays-action@master
+      with:
+        text: ${{ steps.create_image.outputs.url }} 
 ```
 
-Build the typescript
-```bash
-$ npm run build
+**Output:**
+The API will return a URL with your created image.
+
+```
+  with:
+    hcti_user_id: ***
+    hcti_api_key: ***
+    html: <div class="box">Hello, world</div>
+    css: .box { width: 400px }
+{
+  url: 'https://hcti.io/v1/image/8bfe53b8-fcd3-4cd9-9aa5-2fe67046d59c'
+}
 ```
 
-Run the tests :heavy_check_mark:  
-```bash
-$ npm test
-
- PASS  ./index.test.js
-  ✓ throws invalid number (3ms)
-  ✓ wait 500 ms (504ms)
-  ✓ test runs (95ms)
-
-...
-```
+You can then access it via the `outputs` in your next steps to pass it to another Action. `${{ steps.create_image.outputs.url }}`
 
 ## Change action.yml
 
