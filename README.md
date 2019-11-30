@@ -13,13 +13,13 @@ Sign up for an API key at https://htmlcsstoimage.com. Then set the following sec
 
 ```yml
 - name Create image
-      uses: htmlcsstoimage/action@v1
-      with:
-       hcti_user_id: ${{ secrets.HCTI_USER_ID }}
-       hcti_api_key: ${{ secrets.HCTI_API_KEY }}
-       html: "<div id='box'>Hello, world</div>"
-       css: ".box { width: 200px; height: 200px; font-family: 'Roboto' }"
-       google_fonts: "Roboto"
+  uses: htmlcsstoimage/action@v1
+  with:
+    hcti_user_id: ${{ secrets.HCTI_USER_ID }}
+    hcti_api_key: ${{ secrets.HCTI_API_KEY }}
+    html: "<div id='box'>Hello, world</div>"
+    css: ".box { width: 200px; height: 200px; font-family: 'Roboto' }"
+    google_fonts: "Roboto"
 ```
 
 Here's a full example in a workflow.
