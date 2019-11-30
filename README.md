@@ -35,7 +35,10 @@ jobs:
       uses: mscoutermarsh/cowsays-action@master
       with:
         text: ${{ steps.create_image.outputs.url }} 
+        color: "green"
 ```
+
+<img src="https://p196.p4.n0.cdn.getcloudapp.com/items/E0uE5Zzb/Image+2019-11-30+at+4.41.38+PM.png?v=eb99d3869208b6dfe7fa10c3fd719bc3" width="500px"></img>
 
 **Output:**
 The API will return a URL with your created image.
