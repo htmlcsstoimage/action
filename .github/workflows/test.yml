@@ -25,4 +25,4 @@ jobs:
     - name: Print url  
       uses: mscoutermarsh/cowsays-action@master
       with:
-        text: ${{ steps.create_image.outputs.url }}
+        text: ${{ steps.Create_image.outputs.url }}
