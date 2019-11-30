@@ -15,7 +15,8 @@ jobs:
     - run: npm ci
     - run: npm run build
     - run: npm test
-    - name: Create image  
+    - name: Create image
+      id: create_image  
       uses: ./
       with:
         hcti_user_id: ${{ secrets.HCTI_USER_ID }}
@@ -25,4 +26,4 @@ jobs:
     - name: Print url  
       uses: mscoutermarsh/cowsays-action@master
       with:
-        text: ${{ steps.Create_image.outputs.url }}
+        text: ${{ steps.create_image.outputs.url }}
