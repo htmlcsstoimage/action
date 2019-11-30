@@ -11,7 +11,19 @@ Sign up for an API key at https://htmlcsstoimage.com. Then set the following sec
 
 ## Add to your workflow
 
-Install the dependencies  
+```yml
+- name Create image
+      uses: htmlcsstoimage/action@v1
+      with:
+       hcti_user_id: ${{ secrets.HCTI_USER_ID }}
+       hcti_api_key: ${{ secrets.HCTI_API_KEY }}
+       html: "<div id='box'>Hello, world</div>"
+       css: ".box { width: 200px; height: 200px; font-family: 'Roboto' }"
+       google_fonts: "Roboto"
+```
+
+Here's a full example in a workflow.
+
 ```yml
 on:
   push
@@ -40,7 +52,7 @@ jobs:
 
 <img src="https://p196.p4.n0.cdn.getcloudapp.com/items/E0uE5Zzb/Image+2019-11-30+at+4.41.38+PM.png?v=eb99d3869208b6dfe7fa10c3fd719bc3" width="500px"></img>
 
-**Output:**
+## Output
 The API will return a URL with your created image.
 
 ```
