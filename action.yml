@@ -19,7 +19,7 @@ inputs:
     description: 'The Google fonts to be loaded for your image'
     required: false
 outputs:
-  image_url:
+  url:
     description: 'The URL to your image'
 runs:
   using: 'node12'
