@@ -12,7 +12,7 @@ Sign up for an API key at https://htmlcsstoimage.com. Then set the following sec
 ## Add to your workflow
 
 ```yml
-- name Create image
+- name: Create image
   id: create_image
   uses: htmlcsstoimage/action@v1
   with:
